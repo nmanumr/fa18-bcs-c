@@ -1,5 +1,21 @@
 <div class="searchbar">
   <ion-icon name="search" class="searchbar--icon"></ion-icon>
   <input class="searchbar--input" placeholder="Search">
-  <ion-icon name="more" class="searchbar--icon after"></ion-icon>
+  <button mat-icon-button class="searchbar--button" [matMenuTriggerFor]="menu">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" overlapTrigger="true">
+    <button mat-menu-item>
+      <mat-icon>brightness_4</mat-icon>
+      <span>Toggle Dark Mode</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>person</mat-icon>
+      <span>Students Console</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>code</mat-icon>
+      <span>Source Code</span>
+    </button>
+  </mat-menu>
 </div>

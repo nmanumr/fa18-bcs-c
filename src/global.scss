@@ -10,7 +10,12 @@
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
 
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+body{
+    font-family: 'Open Sans', 'Roboto', sans-serif;
+}
 
 ion-content{
-    --padding-top: 52px;
+    --padding-top: 68px;
 }

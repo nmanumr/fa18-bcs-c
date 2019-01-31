@@ -1,5 +1,7 @@
 {
   "name": "Class Resources",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
