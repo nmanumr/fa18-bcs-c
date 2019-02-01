@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs/tabs.page';
-import { HomePage } from './home/home.page';
+import { HomePage } from './pages/home/home.page';
 import { Tab2Page } from './tab2/tab2.page';
 import { Tab3Page } from './tab3/tab3.page';
+import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 const routes: Routes = [
   {
@@ -12,7 +14,11 @@ const routes: Routes = [
     children: [
       {
         path: 'home',
-        component: HomePage
+        component: HomePage,
+      },
+      {
+        path: 'timetable',
+        component: TimetableComponent,
       },
       {
         path: 'tab2',
@@ -28,6 +34,10 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },
+  {
+    path: ':semester/:subject',
+    component: SubjectDetailsComponent
   },
   {
     path: '',

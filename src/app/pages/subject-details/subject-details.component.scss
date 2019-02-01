@@ -1,0 +1,16 @@
+.header-md:after{
+    background-image: none;
+}
+
+ion-header{
+    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+ion-content{
+    --padding-start: 18px;
+    --padding-end: 18px;
+}
+
+.mat-expansion-panel{
+    box-shadow: none;
+}

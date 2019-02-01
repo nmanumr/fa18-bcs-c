@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { Tab2Page } from './tab2/tab2.page';
-import { HomePage } from './home/home.page';
+import { HomePage } from './pages/home/home.page';
 import { Tab3Page } from './tab3/tab3.page';
 import { TabsPage } from './tabs/tabs.page';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,8 +21,17 @@ import {
   MatButtonModule,
   MatListModule,
   MatRippleModule,
-  MatDividerModule
+  MatDividerModule,
+  MatExpansionModule,
+  MatTableModule
 } from '@angular/material';
+import { DataService } from './services/data.service';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { environment } from 'src/environments/environment';
+import { ReversePipe } from './pipes/reverse';
+import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
+import { TimetableComponent } from './pages/timetable/timetable.component';
 
 @NgModule({
   declarations: [
@@ -31,12 +40,18 @@ import {
     Tab2Page,
     HomePage,
     Tab3Page,
-    TabsPage
+    TabsPage,
+    ReversePipe,
+    SubjectDetailsComponent,
+    TimetableComponent,
+    
   ],
   entryComponents: [],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule.enablePersistence(),
     AppRoutingModule,
     MatMenuModule,
     MatIconModule,
@@ -44,12 +59,16 @@ import {
     MatListModule,
     MatRippleModule,
     MatDividerModule,
+    MatExpansionModule,
+    MatTableModule,
     BrowserAnimationsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: FirestoreSettingsToken, useValue: {} },
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    DataService
   ],
   bootstrap: [AppComponent]
 })

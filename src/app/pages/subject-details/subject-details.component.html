@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <mat-accordion class="mat-list-base">
+    <ng-container *ngFor="let res of resources | async">
+      <h3 mat-subheader *ngIf="res.isHeading">{{res.name}}</h3>
+      <mat-expansion-panel *ngIf="!res.isHeading" hideToggle>
+        <mat-expansion-panel-header matRipple collapsedHeight="72px" expandedHeight="72px" class="mat-list-item">
+          <mat-panel-title class="mat-line">
+            <div class="list-icon list-icon--pre">
+              <mat-icon class="mat-icon">folder</mat-icon>
+            </div>
+            <!-- <div class="list-icon list-icon--post">
+              <mat-icon class="mat-icon">cloud_queue</mat-icon>
+            </div> -->
+            {{res.name}}
+          </mat-panel-title>
+          <mat-panel-description class="mat-line">
+            Feb 20, 2016
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <mat-nav-list dense>
+          <mat-list-item>
+            <mat-icon mat-list-icon>book</mat-icon>
+            <h4 mat-line>Download</h4>
+          </mat-list-item>
+          <mat-list-item>
+            <mat-icon mat-list-icon>book</mat-icon>
+            <h4 mat-line>View Info</h4>
+          </mat-list-item>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </ng-container>
+  </mat-accordion>
+</ion-content>

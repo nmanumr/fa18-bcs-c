@@ -1,0 +1,22 @@
+<app-searchbar></app-searchbar>
+
+<ion-content>
+  <mat-nav-list>
+    <ng-container *ngFor="let sm of semesters | async | reverse">
+      <h3 mat-subheader>{{sm.name}}</h3>
+
+      <ng-container *ngIf="subjects[sm.id]">
+        <mat-list-item *ngFor="let sub of subjects[sm.id]['subjects'] | async" [routerLink]="'/'+sm.id+'/'+sub.id" [queryParams]="{name: sub.name}" routerDirection="forward">
+            <mat-icon mat-list-icon>book</mat-icon>
+            <h4 mat-line>{{sub.name}}</h4>
+            <p mat-line> {{sub.ch}} - {{sub.teacher}} </p>
+        </mat-list-item>
+        <mat-list-item *ngFor="let link of subjects[sm.id]['links'] | async" >
+            <mat-icon mat-list-icon>link</mat-icon>
+            <h4 mat-line>{{link.name}}</h4>
+        </mat-list-item>
+      </ng-container>
+      <mat-divider></mat-divider>  
+    </ng-container>
+  </mat-nav-list>
+</ion-content>
