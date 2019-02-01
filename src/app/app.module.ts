@@ -23,7 +23,10 @@ import {
   MatRippleModule,
   MatDividerModule,
   MatExpansionModule,
-  MatTableModule
+  MatSelectModule,
+  MatTableModule,
+  MatOptionModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { DataService } from './services/data.service';
 import { AngularFireModule } from '@angular/fire';
@@ -33,6 +36,7 @@ import { ReversePipe } from './pipes/reverse';
 import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -57,6 +61,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     AppRoutingModule,
     MatMenuModule,
     MatIconModule,
+    MatSelectModule,
+    FormsModule,
+    MatFormFieldModule,
     MatButtonModule,
     MatListModule,
     MatRippleModule,

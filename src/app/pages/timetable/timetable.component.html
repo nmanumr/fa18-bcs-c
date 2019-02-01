@@ -1,23 +1,24 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>{{name}}</ion-title>
-    <ion-buttons slot="end">
-      <button mat-icon-button class="searchbar--button" [matMenuTriggerFor]="menu">
+    <ion-title>
+      <mat-form-field>
+        <mat-select value="selected">
+          <mat-option value="selected">{{name}}</mat-option>
+          <mat-option value="latest">Semester 1</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </ion-title>
+    <ion-buttons slot="end" *ngIf="subjectColors">
+      <button mat-icon-button [matMenuTriggerFor]="colors">
         <mat-icon>more_vert</mat-icon>
       </button>
-      <mat-menu #menu="matMenu" overlapTrigger="true">
-        <button mat-menu-item>
-          <mat-icon>brightness_4</mat-icon>
-          <span>Toggle Dark Mode</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>person</mat-icon>
-          <span>Students Console</span>
-        </button>
-        <button mat-menu-item>
-          <mat-icon>code</mat-icon>
-          <span>Source Code</span>
-        </button>
+      <mat-menu #colors="matMenu" overlapTrigger="true">
+        <ng-container *ngFor="let sub of keys(subjectColors)">
+          <button mat-menu-item>
+            <mat-icon [style.color]="subjectColors[sub]">fiber_manual_record</mat-icon>
+            <span>{{sub}}</span>
+          </button>
+        </ng-container>
       </mat-menu>
     </ion-buttons>
   </ion-toolbar>

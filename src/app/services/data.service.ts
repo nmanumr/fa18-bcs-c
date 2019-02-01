@@ -76,7 +76,7 @@ export class DataService {
 
   async parsePeriod(period) {
     if (!period[0]) 
-      return { code: "", subject: "", teacher: "", room: "", rowspan: 1, color: "" }
+      return { code: "", subject: "", teacher: "", room: "", rowspan: 1, color: "", isLab:false }
     
     return new Promise(r=>{
       var sub = this.afs.doc(`subjects/${period[0]}`).valueChanges().subscribe(
@@ -88,7 +88,8 @@ export class DataService {
             teacher: data["teacher"],
             room: period[1],
             rowspan: period[3] || 1,
-            color: period[2]? data["colorL"] : data["color"]
+            color: period[2]? data["colorL"] : data["color"],
+            isLab: !!period[2]
           })
         }
       )
