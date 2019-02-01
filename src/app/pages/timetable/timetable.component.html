@@ -1,3 +1,54 @@
-<p>
-  timetable works!
-</p>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{name}}</ion-title>
+    <ion-buttons slot="end">
+      <button mat-icon-button class="searchbar--button" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" overlapTrigger="true">
+        <button mat-menu-item>
+          <mat-icon>brightness_4</mat-icon>
+          <span>Toggle Dark Mode</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>person</mat-icon>
+          <span>Students Console</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>code</mat-icon>
+          <span>Source Code</span>
+        </button>
+      </mat-menu>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="table-container">
+    <app-loader *ngIf="!dataSource"></app-loader>
+    <table class="mat-table" *ngIf="dataSource">
+      <thead>
+        <tr class="mat-header-row">
+          <th class="mat-header-cell"></th>
+          <th *ngFor="let column of displayedColumns" class="mat-header-cell">
+            {{column}}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let week of dataSource; index as i" class="mat-row">
+          <th class="mat-header-cell">
+            <span [attr.starttime]="breakpoints[i]" [attr.endtime]="breakpoints[i+1]">
+              {{ i + 1 }}
+            </span>
+          </th>
+          <td *ngFor="let period of week" [attr.rowspan]="period.rowspan" class="mat-cell period">
+            <p class="period--button" *ngIf="period.room" [style.background]="period.color">
+              {{period.room}}
+            </p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</ion-content>

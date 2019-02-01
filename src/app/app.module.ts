@@ -32,6 +32,7 @@ import { environment } from 'src/environments/environment';
 import { ReversePipe } from './pipes/reverse';
 import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
     ReversePipe,
     SubjectDetailsComponent,
     TimetableComponent,
+    LoaderComponent,
     
   ],
   entryComponents: [],
