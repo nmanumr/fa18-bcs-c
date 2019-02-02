@@ -37,6 +37,7 @@ import { SubjectDetailsComponent } from './pages/subject-details/subject-details
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { FormsModule } from '@angular/forms';
+import { LectureModelComponent } from './pages/lecture-model/lecture-model.component';
 
 @NgModule({
   declarations: [
@@ -50,9 +51,12 @@ import { FormsModule } from '@angular/forms';
     SubjectDetailsComponent,
     TimetableComponent,
     LoaderComponent,
+    LectureModelComponent,
     
   ],
-  entryComponents: [],
+  entryComponents: [
+    LectureModelComponent
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),

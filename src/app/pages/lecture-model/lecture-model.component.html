@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <button mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <h3>
+    <mat-icon [style.color]="lecture.color">fiber_manual_record</mat-icon>
+    <span>{{lecture.name}}</span>
+  </h3>
+  <mat-nav-list>
+    <mat-list-item>
+      <mat-icon mat-list-icon>location_on</mat-icon>
+      <h4 mat-line>{{lecture.room}}</h4>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>person</mat-icon>
+      <h4 mat-line>{{lecture.teacher}}</h4>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>alarm</mat-icon>
+      <h4 mat-line>Start Time</h4>
+      <p mat-line>{{lecture.startTime}}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>alarm_on</mat-icon>
+      <h4 mat-line>End Time</h4>
+      <p mat-line>{{lecture.endTime}}</p>
+    </mat-list-item>
+    <mat-list-item>
+      <mat-icon mat-list-icon>view_agenda</mat-icon>
+      <h4 mat-line>Slot</h4>
+      <p mat-line>{{lecture.slot}}</p>
+    </mat-list-item>
+  </mat-nav-list>
+</ion-content>

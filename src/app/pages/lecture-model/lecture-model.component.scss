@@ -1,0 +1,23 @@
+.header-md:after{
+    background-image: none!important;
+}
+
+h3 {
+    font-weight: 400;
+    position: relative;
+    top: -20px;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+
+    mat-icon{
+        padding: 4px;
+        display: inline-block;
+        height: 32px;
+        width: 32px;
+    }
+
+    span{
+        padding-left: 16px;
+    }
+}

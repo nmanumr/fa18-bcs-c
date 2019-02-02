@@ -1,12 +1,23 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      <mat-form-field>
+      <button mat-button [matMenuTriggerFor]="timetablesListMenu">
+        {{name}}
+        <mat-icon>arrow_drop_down</mat-icon>
+      </button>
+      <mat-menu #timetablesListMenu="matMenu" overlapTrigger="true">
+        <ng-container *ngFor="let timetable of timetables">
+          <button mat-menu-item (click)="setTimetable(timetable)">
+            {{timetable.name}}
+          </button>
+        </ng-container>
+      </mat-menu>
+      <!-- <mat-form-field>
         <mat-select value="selected">
           <mat-option value="selected">{{name}}</mat-option>
           <mat-option value="latest">Semester 1</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
     </ion-title>
     <ion-buttons slot="end" *ngIf="subjectColors">
       <button mat-icon-button [matMenuTriggerFor]="colors">
@@ -44,9 +55,9 @@
             </span>
           </th>
           <td *ngFor="let period of week" [attr.rowspan]="period.rowspan" class="mat-cell period">
-            <p class="period--button" *ngIf="period.room" [style.background]="period.color">
+            <div class="period--button" *ngIf="period.room" [style.background]="period.color" matRipple (click)="openDetails(period, i)">
               {{period.room}}
-            </p>
+            </div>
           </td>
         </tr>
       </tbody>
