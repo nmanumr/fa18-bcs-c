@@ -11,6 +11,9 @@ export class HomePage implements OnInit {
 
   semesters: Observable<any[]>;
   subjects = {};
+  search_pos = 0;
+  scrollStartPos = null;
+  isScrolling = false;
 
   constructor(
     private dataService: DataService
@@ -32,5 +35,40 @@ export class HomePage implements OnInit {
         }
       }
     )
+  }
+
+  onScrollStart() {
+    this.isScrolling = true;
+  }
+
+  onScrollEnd() {
+    if(this.search_pos >= -34 || this.scrollStartPos < 40)
+      this.search_pos = 0;
+    else
+      this.search_pos = -68;
+    
+    this.scrollStartPos = null;
+    this.isScrolling = false;
+  }
+
+  onScrolling(e) {
+    if(!this.scrollStartPos){
+      this.scrollStartPos = e.detail.currentY;
+    }
+
+    if (this.scrollStartPos > e.detail.currentY) { // scrolling above
+      if (this.search_pos <= 0 && this.search_pos >= -68) {
+        this.search_pos += (this.scrollStartPos - e.detail.currentY);
+      }
+    }
+    else if (this.scrollStartPos < e.detail.currentY) { //scrolling below
+      if (this.search_pos <= 0 && this.search_pos >= -68) {
+        this.search_pos += (this.scrollStartPos - e.detail.currentY);
+      }
+    }
+
+    this.search_pos = this.search_pos > 0 ? 0 : this.search_pos;
+    this.search_pos = this.search_pos < -68 ? -68 : this.search_pos;
+    this.scrollStartPos = e.detail.currentY;
   }
 }
