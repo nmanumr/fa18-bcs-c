@@ -3,9 +3,9 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs/tabs.page';
 import { HomePage } from './pages/home/home.page';
 import { Tab2Page } from './tab2/tab2.page';
-import { Tab3Page } from './tab3/tab3.page';
 import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
+import { AboutComponent } from './pages/about/about.component';
 
 const routes: Routes = [
   {
@@ -25,8 +25,8 @@ const routes: Routes = [
         component: Tab2Page
       },
       {
-        path: 'tab3',
-        component: Tab3Page
+        path: 'about',
+        component: AboutComponent
       },
       {
         path: '',

@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
 import { Tab2Page } from './tab2/tab2.page';
 import { HomePage } from './pages/home/home.page';
-import { Tab3Page } from './tab3/tab3.page';
 import { TabsPage } from './tabs/tabs.page';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -38,6 +37,7 @@ import { TimetableComponent } from './pages/timetable/timetable.component';
 import { LoaderComponent } from './components/loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { LectureModelComponent } from './pages/lecture-model/lecture-model.component';
+import { AboutComponent } from './pages/about/about.component';
 
 @NgModule({
   declarations: [
@@ -45,13 +45,13 @@ import { LectureModelComponent } from './pages/lecture-model/lecture-model.compo
     SearchbarComponent,
     Tab2Page,
     HomePage,
-    Tab3Page,
     TabsPage,
     ReversePipe,
     SubjectDetailsComponent,
     TimetableComponent,
     LoaderComponent,
     LectureModelComponent,
+    AboutComponent,
     
   ],
   entryComponents: [

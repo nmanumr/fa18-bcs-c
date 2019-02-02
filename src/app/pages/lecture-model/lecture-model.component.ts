@@ -9,6 +9,7 @@ import { NavParams } from '@ionic/angular';
 export class LectureModelComponent implements OnInit {
 
   @Input() lecture: any;
+  @Input() close: any;
 
   constructor(public navParams: NavParams) {}
 
