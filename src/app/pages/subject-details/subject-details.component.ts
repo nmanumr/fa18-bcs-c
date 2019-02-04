@@ -1,7 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { DataService } from 'src/app/services/data.service';
-import { Observable } from 'rxjs';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-subject-details',
@@ -10,20 +7,34 @@ import { Observable } from 'rxjs';
 })
 export class SubjectDetailsComponent implements OnInit {
 
-  name;
-  resources: Observable<any[]>;
+  @Input() subject;
+  @Input() close;
 
-  constructor(
-    private route: ActivatedRoute,
-    private dataService: DataService
-  ) { }
+  iconspath = "../../../assets/file-icons/";
+
+  fileIcons = {
+    'pptx': 'ppt',
+    'ppt': 'ppt',
+    'xls': 'xls',
+    'xlsx': 'xls',
+    'doc': 'doc',
+    'docx': 'doc',
+    'zip': 'zip',
+    'rar': 'zip',
+    'pdf': 'pdf',
+  }
+
+  constructor() { }
 
   ngOnInit() {
-    this.name = this.route.snapshot.queryParamMap.get('name');
-    var semester = this.route.snapshot.params['semester'];
-    var subject = this.route.snapshot.params['subject'];
 
-    this.resources = this.dataService.getResources(semester, subject);
+  }
+
+  getIcon(type) {
+    return this.iconspath + (this.fileIcons[type] ? this.fileIcons[type] : 'file') + '.svg';
+  }
+
+  downloadRes(res) {
   }
 
 }
