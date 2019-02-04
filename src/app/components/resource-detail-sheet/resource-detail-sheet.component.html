@@ -1,0 +1,30 @@
+<mat-nav-list>
+  <mat-list-item>
+    <div style="flex-shrink: 0;font-size: 24px;box-sizing: content-box;border-radius: 50%;padding: 4px;">
+      <img [src]="dataService.getIcon(res.type)" class="mat-icon" />
+    </div>
+    <h4 mat-line>{{res.name}}</h4>
+    <p mat-line> {{res.date.seconds * 1000 | date}} </p>
+  </mat-list-item>
+  <mat-divider></mat-divider>
+  <h3 mat-subheader>For maintenance only</h3>
+  <mat-list-item>
+    <h4 mat-line>Resource ID</h4>
+    <p mat-line> {{res.id}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <h4 mat-line>Resource Type</h4>
+    <p mat-line> {{res.type}} </p>
+  </mat-list-item>
+  <mat-list-item>
+    <h4 mat-line>Resource MIME Type</h4>
+    <p mat-line> {{dataService.getMimeType(res.type)}} </p>
+  </mat-list-item>
+  <h3 mat-subheader>Available Actions</h3>
+  <a mat-list-item [href]="res.download" *ngIf="res.download">
+    <h4 mat-line>Download</h4>
+  </a>
+  <a mat-list-item [href]="res.view" *ngIf="res.view">
+    <h4 mat-line>View</h4>
+  </a>
+</mat-nav-list>

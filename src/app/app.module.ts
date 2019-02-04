@@ -24,7 +24,8 @@ import {
   MatSelectModule,
   MatTableModule,
   MatOptionModule,
-  MatFormFieldModule
+  MatFormFieldModule,
+  MatBottomSheetModule
 } from '@angular/material';
 import { DataService } from './services/data.service';
 import { AngularFireModule } from '@angular/fire';
@@ -41,6 +42,12 @@ import { LibraryComponent } from './pages/library/library.component';
 import { ParseTimetablePipe } from './pipes/parseTimetable';
 import { LoadRefsPipe } from './pipes/loadRefs';
 
+import { Downloader } from '@ionic-native/downloader/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileOpener } from '@ionic-native/file-opener/ngx';
+import { ResourceDetailSheetComponent } from './components/resource-detail-sheet/resource-detail-sheet.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,11 +62,13 @@ import { LoadRefsPipe } from './pipes/loadRefs';
     LectureModelComponent,
     AboutComponent,
     LibraryComponent,
-    LoadRefsPipe
+    LoadRefsPipe,
+    ResourceDetailSheetComponent
   ],
   entryComponents: [
     LectureModelComponent,
-    SubjectDetailsComponent
+    SubjectDetailsComponent,
+    ResourceDetailSheetComponent
   ],
   imports: [
     BrowserModule,
@@ -78,14 +87,18 @@ import { LoadRefsPipe } from './pipes/loadRefs';
     MatDividerModule,
     MatExpansionModule,
     MatTableModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatBottomSheetModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: FirestoreSettingsToken, useValue: {} },
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    DataService
+    DataService,
+    Downloader,
+    File,
+    FileOpener
   ],
   bootstrap: [AppComponent]
 })

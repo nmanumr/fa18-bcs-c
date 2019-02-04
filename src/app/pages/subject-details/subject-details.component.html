@@ -18,8 +18,7 @@
         <mat-expansion-panel-header matRipple collapsedHeight="72px" expandedHeight="72px" class="mat-list-item">
           <mat-panel-title class="mat-line">
             <div class="list-icon list-icon--pre">
-              <img [src]="getIcon(res.type)" class="mat-icon"/>
-              <!-- <mat-icon class="mat-icon">folder</mat-icon> -->
+              <img [src]="dataService.getIcon(res.type)" class="mat-icon" />
             </div>
             {{res.name}}
           </mat-panel-title>
@@ -29,11 +28,11 @@
         </mat-expansion-panel-header>
 
         <mat-nav-list>
-          <mat-list-item (click)="downloadRes(res)">
-            <mat-icon mat-list-icon>save_alt</mat-icon>
-            <h4 mat-line>Download</h4>
+          <mat-list-item (click)="openFile(res)">
+            <mat-icon mat-list-icon>remove_red_eye</mat-icon>
+            <h4 mat-line>View</h4>
           </mat-list-item>
-          <mat-list-item>
+          <mat-list-item (click)="showInfo(res)">
             <mat-icon mat-list-icon>error_outline</mat-icon>
             <h4 mat-line>View Info</h4>
           </mat-list-item>
