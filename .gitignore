@@ -35,3 +35,7 @@ UserInterfaceState.xcuserstate
 
 src/environments/environment.prod.ts
 src/environments/environment.ts
+
+ClassResouces.apk
+Makefile
+my-release-key.keystore
