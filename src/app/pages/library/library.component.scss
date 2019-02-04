@@ -1,0 +1,17 @@
+.header-md:after{
+    background-image: none!important;
+}
+
+ion-header{
+    box-shadow: 0 2px 3px 1px rgba(0, 0, 0, 0.1);
+}
+
+.lead{
+    margin: 0;
+    padding: 30px;
+    font-size: 13px;
+    line-height: 20px;
+    text-align: center;
+    font-style: italic;
+    color: rgba(0,0,0,.7);
+}

@@ -42,6 +42,12 @@ export class DataService {
     );
   }
 
+  getFromPath(path, isDoc=true){
+    if(isDoc)
+      return this.getDocumentWithId(this.afs.doc(path));
+    return this.getCollectionWithId(this.afs.collection(path));
+  }
+
   getSemesters(): Observable<any> {
     return this.getCollectionWithId(this.afs.collection(`semester`));
   }
@@ -56,44 +62,6 @@ export class DataService {
 
   getLinks(sm) {
     return this.getCollectionWithId(this.afs.collection(`semester/${sm}/links`));
-  }
-
-  getTimeTables() {
-    return this.getDocumentWithId(this.afs.doc(`timetable/timetables`));
-  }
-
-  async buildTimeTable(ttArr) {
-    var tt = [];
-    for (var i = 0; i < ttArr.length; i++) {
-      tt[i] = [];
-      var periods = JSON.parse(ttArr[i]);
-      for (var j = 0; j < periods.length; j++) {
-        tt[i][j] = await this.parsePeriod(periods[j])
-      }
-    }
-    return tt;
-  }
-
-  async parsePeriod(period) {
-    if (!period[0]) 
-      return { code: "", subject: "", teacher: "", room: "", rowspan: 1, color: "", isLab:false }
-    
-    return new Promise(r=>{
-      var sub = this.afs.doc(`subjects/${period[0]}`).valueChanges().subscribe(
-        data=>{
-          sub.unsubscribe();
-          return r({
-            code: period[0],
-            subject: data["name"],
-            teacher: data["teacher"],
-            room: period[1],
-            rowspan: period[3] || 1,
-            color: period[2]? data["colorL"] : data["color"],
-            isLab: !!period[2]
-          })
-        }
-      )
-    })
   }
 
   getResources(sm, subj) {

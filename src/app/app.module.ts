@@ -9,7 +9,6 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SearchbarComponent } from './components/searchbar/searchbar.component';
-import { Tab2Page } from './tab2/tab2.page';
 import { HomePage } from './pages/home/home.page';
 import { TabsPage } from './tabs/tabs.page';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,20 +37,23 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { LectureModelComponent } from './pages/lecture-model/lecture-model.component';
 import { AboutComponent } from './pages/about/about.component';
+import { LibraryComponent } from './pages/library/library.component';
+import { ParseTimetablePipe } from './pipes/parseTimetable';
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchbarComponent,
-    Tab2Page,
     HomePage,
     TabsPage,
     ReversePipe,
+    ParseTimetablePipe,
     SubjectDetailsComponent,
     TimetableComponent,
     LoaderComponent,
     LectureModelComponent,
     AboutComponent,
+    LibraryComponent,
     
   ],
   entryComponents: [

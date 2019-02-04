@@ -7,17 +7,11 @@
       </button>
       <mat-menu #timetablesListMenu="matMenu" overlapTrigger="true">
         <ng-container *ngFor="let timetable of timetables">
-          <button mat-menu-item (click)="setTimetable(timetable)">
-            {{timetable.name}}
+          <button mat-menu-item (click)="setCurrentTimetable(timetable.path)">
+            {{timetable.id}}
           </button>
         </ng-container>
       </mat-menu>
-      <!-- <mat-form-field>
-        <mat-select value="selected">
-          <mat-option value="selected">{{name}}</mat-option>
-          <mat-option value="latest">Semester 1</mat-option>
-        </mat-select>
-      </mat-form-field> -->
     </ion-title>
     <ion-buttons slot="end" *ngIf="subjectColors">
       <button mat-icon-button [matMenuTriggerFor]="colors">
@@ -37,8 +31,7 @@
 
 <ion-content>
   <div class="table-container">
-    <app-loader *ngIf="!dataSource"></app-loader>
-    <table class="mat-table" *ngIf="dataSource">
+    <table class="mat-table">
       <thead>
         <tr class="mat-header-row">
           <th class="mat-header-cell"></th>
@@ -48,13 +41,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let week of dataSource; index as i" class="mat-row">
+        <tr *ngFor="let week of currentTimeTable | async | parseTimetable | async; index as i; first as firstr; last as lastr;" class="mat-row">
           <th class="mat-header-cell">
             <span [attr.starttime]="breakpoints[i]" [attr.endtime]="breakpoints[i+1]">
               {{ i + 1 }}
             </span>
           </th>
-          <td *ngFor="let period of week" [attr.rowspan]="period.rowspan" class="mat-cell period">
+          <td *ngFor="let period of week; first as firstc; last as lastc" [attr.rowspan]="period.rowspan" class="mat-cell period">
+            {{setColor(period, firstr, firstc, lastr, lastc)}}
             <div class="period--button" *ngIf="period.room" [style.background]="period.color" matRipple (click)="openDetails(period, i)">
               {{period.room}}
             </div>

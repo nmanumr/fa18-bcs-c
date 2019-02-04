@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { ModalController } from '@ionic/angular';
 import { LectureModelComponent } from '../lecture-model/lecture-model.component';
+import { DocumentReference } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-timetable',
@@ -11,80 +12,56 @@ import { LectureModelComponent } from '../lecture-model/lecture-model.component'
 export class TimetableComponent implements OnInit {
 
   timetables = [];
+  currentTimeTable;
+  subjectColors = {};
+  isAddedAllSubjects = false;
+
   name = "TimeTable";
-
   breakpoints = ['8:30', '10:00', '11:30', '1:00', '2:30', '4:00', '5:30', '7:00']
-
   displayedColumns: string[] = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-  dataSource: any[];
-  subjectColors;
+
 
   constructor(private dataService: DataService, public modalController: ModalController) {
-    var sub = dataService.getTimeTables().subscribe(
+    dataService.getFromPath('timetable/timetables').subscribe(
       timetableList => {
-        for(var timetableRef of timetableList.other){
-          this.getTimetable(timetableRef).then(
-            timetable => {
-              this.timetables.push(timetable);
-              console.log(timetable);
-            }
-          )
+        var timetableRef: DocumentReference;
+        for (timetableRef of timetableList.other) {
+          this.timetables.push(timetableRef);
         }
-
-        this.loadTimetable(timetableList.latest)
-        sub.unsubscribe();
+        this.setCurrentTimetable(timetableList.latest.path);
       }
     )
   }
 
-  loadTimetable(timetableRef) {
-    this.getTimetable(timetableRef).then(
-      timetable=>{
-        this.name = timetable["name"],
-        this.dataSource = timetable['parsedTimeTable'];
-        this.getSubjectColors();
+  setCurrentTimetable(timetablePath: string){
+    this.currentTimeTable = this.dataService.getFromPath(timetablePath);
+    this.currentTimeTable.subscribe(
+      data=>{
+        this.name = data.name
       }
     )
   }
 
-  setTimetable(timetable){
-    this.dataSource = timetable['parsedTimeTable'];
-    this.name = timetable['name'];
-    this.getSubjectColors();
-  }
-
-  async getTimetable(timetableRef) {
-    return new Promise(res => {
-      timetableRef.get().then(
-        timetable => {
-          this.dataService.buildTimeTable(timetable.data().timetable).then(
-            data => {
-              return res({
-                ...timetable.data(),
-                parsedTimeTable: data
-              })
-            }
-          );
-        }
-      )
-    })
-  }
-
-  getSubjectColors() {
-    var subjectColors = {};
-    for (var periods of this.dataSource) {
-      for (var period of periods) {
-        if (period.isLab)
-          subjectColors[period.subject + " Lab"] = period.color;
-        else
-          subjectColors[period.subject] = period.color;
+  setColor(subject, isFirstr, isFirstc, isLastr, isLastc) {
+    if (!this.isAddedAllSubjects) {
+      if (isFirstc && isFirstr) {
+        setTimeout(() => { this.subjectColors = {}; })
       }
+      if (isLastc && isLastr) {
+        this.isAddedAllSubjects = true;
+      }
+      if(subject.subject == "") return "";
+      setTimeout(() => {
+        this.subjectColors[
+          subject.subject + (subject.isLab ? " Lab" : "")
+        ] = subject.color;
+      })
     }
-    delete subjectColors[""];
-    this.subjectColors = subjectColors;
+    return ""
   }
 
   keys(obj) {
+    delete obj[""];
     return Object.keys(obj);
   }
 

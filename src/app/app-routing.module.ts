@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs/tabs.page';
 import { HomePage } from './pages/home/home.page';
-import { Tab2Page } from './tab2/tab2.page';
 import { SubjectDetailsComponent } from './pages/subject-details/subject-details.component';
 import { TimetableComponent } from './pages/timetable/timetable.component';
 import { AboutComponent } from './pages/about/about.component';
+import { LibraryComponent } from './pages/library/library.component';
 
 const routes: Routes = [
   {
@@ -21,8 +21,8 @@ const routes: Routes = [
         component: TimetableComponent,
       },
       {
-        path: 'tab2',
-        component: Tab2Page
+        path: 'library',
+        component: LibraryComponent
       },
       {
         path: 'about',
