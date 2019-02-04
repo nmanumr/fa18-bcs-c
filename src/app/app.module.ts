@@ -58,7 +58,8 @@ import { LoadRefsPipe } from './pipes/loadRefs';
     LoadRefsPipe
   ],
   entryComponents: [
-    LectureModelComponent
+    LectureModelComponent,
+    SubjectDetailsComponent
   ],
   imports: [
     BrowserModule,

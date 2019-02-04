@@ -5,12 +5,15 @@
     <ng-container *ngFor="let sm of semesters | async | reverse">
       <h3 mat-subheader>{{sm.name}}</h3>
 
-      <mat-list-item *ngFor="let sub of sm.subjects | loadRefs | async" [routerLink]="'/'+sm.id+'/'+sub.id"
-        [queryParams]="{name: sub.name}" routerDirection="forward">
-        <mat-icon mat-list-icon>book</mat-icon>
-        <h4 mat-line>{{sub.name}}</h4>
-        <p mat-line> {{sub.id}} - {{sub.teacher}} </p>
-      </mat-list-item>
+      <ng-container *ngFor="let sub of sm.subjects | loadRefs | async">
+        <mat-list-item *ngIf="sub.resources" (click)="openDetails(sub)">
+          <div mat-list-icon [style.backgroundColor]="sub.color">
+            <mat-icon class="subject-icon">{{sub.icon || 'book'}}</mat-icon>
+          </div>
+          <h4 mat-line>{{sub.name}}</h4>
+          <p mat-line> {{sub.id}} - {{sub.teacher}} </p>
+        </mat-list-item>
+      </ng-container>
       <mat-divider></mat-divider>
     </ng-container>
   </mat-nav-list>

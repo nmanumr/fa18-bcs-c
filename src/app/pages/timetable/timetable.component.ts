@@ -69,9 +69,7 @@ export class TimetableComponent implements OnInit {
   }
 
   async openDetails(period, breakpoint) {
-    function close() {
-      modal.dismiss();
-    }
+    function close() { modal.dismiss(); }
     const modal = await this.modalController.create({
       component: LectureModelComponent,
       componentProps: {

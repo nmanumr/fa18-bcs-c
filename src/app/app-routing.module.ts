@@ -36,10 +36,6 @@ const routes: Routes = [
     ]
   },
   {
-    path: ':semester/:subject',
-    component: SubjectDetailsComponent
-  },
-  {
     path: '',
     redirectTo: '/tabs/home',
     pathMatch: 'full'
