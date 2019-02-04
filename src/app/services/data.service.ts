@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, of, Observer } from 'rxjs';
 import { map } from 'rxjs/operators'
 
 @Injectable({
@@ -10,14 +10,7 @@ export class DataService {
   semesters: Observable<any>;
 
   constructor(private afs: AngularFirestore) {
-    this.semesters = afs.collection('semester').snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        return {
-          id: a.payload.doc.id,
-          ...a.payload.doc.data()
-        }
-      }))
-    );
+    this.semesters = this.getFromPath('semester', false);
   }
 
   getCollectionWithId(el): Observable<any> {
@@ -46,22 +39,6 @@ export class DataService {
     if(isDoc)
       return this.getDocumentWithId(this.afs.doc(path));
     return this.getCollectionWithId(this.afs.collection(path));
-  }
-
-  getSemesters(): Observable<any> {
-    return this.getCollectionWithId(this.afs.collection(`semester`));
-  }
-
-  getSubject(sm, subj): Observable<any> {
-    return this.getDocumentWithId(this.afs.doc(`semester/${sm}/subjects/${subj}`));
-  }
-
-  getSubjects(sm): Observable<any> {
-    return this.getCollectionWithId(this.afs.collection(`semester/${sm}/subjects`));
-  }
-
-  getLinks(sm) {
-    return this.getCollectionWithId(this.afs.collection(`semester/${sm}/links`));
   }
 
   getResources(sm, subj) {

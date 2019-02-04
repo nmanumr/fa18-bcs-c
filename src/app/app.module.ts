@@ -39,6 +39,7 @@ import { LectureModelComponent } from './pages/lecture-model/lecture-model.compo
 import { AboutComponent } from './pages/about/about.component';
 import { LibraryComponent } from './pages/library/library.component';
 import { ParseTimetablePipe } from './pipes/parseTimetable';
+import { LoadRefsPipe } from './pipes/loadRefs';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,7 @@ import { ParseTimetablePipe } from './pipes/parseTimetable';
     LectureModelComponent,
     AboutComponent,
     LibraryComponent,
-    
+    LoadRefsPipe
   ],
   entryComponents: [
     LectureModelComponent

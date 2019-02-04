@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 export class HomePage implements OnInit {
 
   semesters: Observable<any[]>;
-  subjects = {};
   search_pos = 0;
   scrollStartPos = null;
   isScrolling = false;
@@ -21,20 +20,6 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.semesters = this.dataService.semesters;
-
-    this.getSubjects();
-  }
-
-  getSubjects() {
-    this.semesters.subscribe(
-      sms => {
-        for (var sm of sms) {
-          this.subjects[sm['id']] = {}
-          this.subjects[sm['id']]['subjects'] = this.dataService.getSubjects(sm['id']);
-          this.subjects[sm['id']]['links'] = this.dataService.getLinks(sm['id']);
-        }
-      }
-    )
   }
 
   onScrollStart() {
