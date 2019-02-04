@@ -32,5 +32,5 @@ ionic cordova run andriod --device
 make build-apk
 
 # generate private key
-keytool -genkey -v -keystore my-release-key.keystore -alias nmanumr -keyalg RSA -keysize 2048 -validity 10000
+make gen-key
 ```
