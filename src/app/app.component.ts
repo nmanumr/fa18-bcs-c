@@ -23,14 +23,20 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('theme').then(
         theme => {
-          document.children[0].setAttribute('theme', theme);
-          var color = (theme == "light" ? "#F5F5F5" : "#202124");
-          (color == "dark") && this.statusBar.styleBlackOpaque();
+          if(theme == "dark"){
+            var color = "#202124";
+            this.statusBar.styleBlackOpaque();
+          }
+          else{
+            var color = "#F5F5F5";
+            this.statusBar.styleDefault();
+          }
           this.statusBar.backgroundColorByHexString(color);
           this.splashScreen.hide();
         },
         () => {
           this.nativeStorage.setItem('theme', "light");
+          this.statusBar.styleDefault();
           this.statusBar.backgroundColorByHexString("#F5F5F5");
           this.splashScreen.hide();
         }

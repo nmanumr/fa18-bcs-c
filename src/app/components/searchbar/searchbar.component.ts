@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-searchbar',
@@ -9,7 +10,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
 export class SearchbarComponent implements OnInit {
 
   constructor(
-    private nativeStorage: NativeStorage
+    private nativeStorage: NativeStorage,
+    private statusBar: StatusBar,
   ) { }
 
   ngOnInit() {
@@ -19,7 +21,15 @@ export class SearchbarComponent implements OnInit {
     var theme = document.children[0].getAttribute('theme');
     var newTheme = theme == 'light' ? 'dark' : 'light';
     document.children[0].setAttribute('theme', newTheme);
-    localStorage['theme'] = newTheme;
+    if(newTheme == "dark"){
+      var color = "#202124";
+      this.statusBar.styleBlackOpaque();
+    }
+    else{
+      var color = "#F5F5F5";
+      this.statusBar.styleDefault();
+    }
+    this.statusBar.backgroundColorByHexString(color);
     this.nativeStorage.setItem('theme', newTheme);
   }
 
