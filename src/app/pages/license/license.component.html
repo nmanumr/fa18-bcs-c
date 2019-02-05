@@ -1,0 +1,46 @@
+<ion-header class="shadow">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <button mat-icon-button (click)="close()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </ion-buttons>
+    <ion-title style="padding-left: 26px;">About</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <p class="lead">
+    Permissions of this strong copyleft license are conditioned on making available complete source code of licensed
+    works and modifications, which include larger works using a licensed work, under the same license. Copyright and
+    license notices must be preserved. Contributors provide an express grant of patent rights.
+  </p>
+
+  <mat-list>
+    <h3 mat-subheader>Permissions</h3>
+    <mat-list-item *ngFor="let perm of license.Permissions">
+      <mat-icon mat-list-icon style="color: var(--ion-color-success-shade);">done</mat-icon>
+      <h4 mat-line>{{perm[0]}}</h4>
+      <p mat-line>{{perm[1]}}</p>
+    </mat-list-item>
+    <h3 mat-subheader>Limitations</h3>
+    <mat-list-item *ngFor="let perm of license.Limitations">
+      <mat-icon mat-list-icon style="color: var(--ion-color-danger-shade);">close</mat-icon>
+      <h4 mat-line>{{perm[0]}}</h4>
+      <p mat-line>{{perm[1]}}</p>
+    </mat-list-item>
+    <h3 mat-subheader>Conditions</h3>
+    <mat-list-item *ngFor="let perm of license.Conditions">
+      <mat-icon mat-list-icon style="color: var(--ion-color-primary-shade);">error_outline</mat-icon>
+      <h4 mat-line>{{perm[0]}}</h4>
+      <p mat-line>{{perm[1]}}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <a mat-list-item href="https://raw.githubusercontent.com/nmanumr/fa18-bcs-c/master/LICENSE">
+      <mat-icon mat-list-icon>open_in_new</mat-icon>
+      <h4 mat-line>Open Full License</h4>
+    </a>
+  </mat-list>
+
+
+</ion-content>

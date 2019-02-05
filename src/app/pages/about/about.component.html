@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="shadow">
   <ion-toolbar>
     <ion-title style="padding-left: 26px;">About</ion-title>
   </ion-toolbar>
@@ -12,10 +12,10 @@
       <h4 mat-line>Version</h4>
       <p mat-line>0.1 (Beta)</p>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item (click)="openLicense()">
       <mat-icon mat-list-icon>account_balance</mat-icon>
       <h4 mat-line>License</h4>
-      <p mat-line>GNU GPL v3</p>
+      <p mat-line>GNU GPL v3.0</p>
     </mat-list-item>
     <mat-list-item>
       <mat-icon mat-list-icon>copyright</mat-icon>

@@ -46,6 +46,7 @@ import { Downloader } from '@ionic-native/downloader/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { ResourceDetailSheetComponent } from './components/resource-detail-sheet/resource-detail-sheet.component';
+import { LicenseComponent } from './pages/license/license.component';
 
 
 @NgModule({
@@ -63,12 +64,14 @@ import { ResourceDetailSheetComponent } from './components/resource-detail-sheet
     AboutComponent,
     LibraryComponent,
     LoadRefsPipe,
-    ResourceDetailSheetComponent
+    ResourceDetailSheetComponent,
+    LicenseComponent
   ],
   entryComponents: [
     LectureModelComponent,
     SubjectDetailsComponent,
-    ResourceDetailSheetComponent
+    ResourceDetailSheetComponent,
+    LicenseComponent
   ],
   imports: [
     BrowserModule,
