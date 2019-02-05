@@ -11,6 +11,11 @@ ion-toolbar{
 
 table{
     border-color: #e5e5e5;
+    background: transparent;
+
+    th{
+        background: transparent;
+    }
 }
 
 td.mat-cell, td.mat-footer-cell{

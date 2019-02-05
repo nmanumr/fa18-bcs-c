@@ -20,7 +20,7 @@
       <mat-menu #colors="matMenu" overlapTrigger="true">
         <ng-container *ngFor="let sub of keys(subjectColors)">
           <button mat-menu-item>
-            <mat-icon [style.color]="subjectColors[sub]">fiber_manual_record</mat-icon>
+            <mat-icon [style.color]="subjectColors[sub]" [style.opacity]="1">fiber_manual_record</mat-icon>
             <span>{{sub}}</span>
           </button>
         </ng-container>

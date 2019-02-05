@@ -47,6 +47,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { ResourceDetailSheetComponent } from './components/resource-detail-sheet/resource-detail-sheet.component';
 import { LicenseComponent } from './pages/license/license.component';
+import { NativeStorage } from '@ionic-native/native-storage/ngx';
 
 
 @NgModule({
@@ -91,7 +92,7 @@ import { LicenseComponent } from './pages/license/license.component';
     MatExpansionModule,
     MatTableModule,
     BrowserAnimationsModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
   ],
   providers: [
     StatusBar,
@@ -101,7 +102,8 @@ import { LicenseComponent } from './pages/license/license.component';
     DataService,
     Downloader,
     File,
-    FileOpener
+    FileOpener,
+    NativeStorage
   ],
   bootstrap: [AppComponent]
 })

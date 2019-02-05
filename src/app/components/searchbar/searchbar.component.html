@@ -5,7 +5,7 @@
     <mat-icon>more_vert</mat-icon>
   </button>
   <mat-menu #menu="matMenu" overlapTrigger="true">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="toggleDark()">
       <mat-icon>brightness_4</mat-icon>
       <span>Toggle Dark Mode</span>
     </button>

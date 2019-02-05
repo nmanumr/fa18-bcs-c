@@ -4,7 +4,7 @@
 /** Ionic CSS Variables **/
 :root {
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #4285F4;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -74,4 +74,119 @@
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+}
+
+[theme="light"]{
+  &:root{
+    --bg-color: #fff;
+  }
+}
+
+[theme="dark"]{
+  &:root{
+    --bg-color: #202124;
+    --bg-light: #313235;
+    --text-color: #F1F3F4;
+    --text-dull: #BDC1C6;
+    --border-color: #4a4c4f;
+  }
+
+  ion-content{
+    --background: var(--bg-color);
+    --color: var(--text-color);
+  }
+
+  ion-toolbar:not(.normal){
+    --background: var(--bg-light);
+    --color: var(--text-color);
+  }
+
+  ion-toolbar.normal{
+    --background: var(--bg-color);
+    --color: var(--text-color);
+  }
+
+  ion-tab-bar{
+    --background: var(--bg-color);
+    --border: 1px solid transparent;
+    --color: var(--text-dull);
+  }
+
+  ion-tab-button{
+    --color-selected: var(--ion-color-primary)!important
+  }
+
+  .mat-list-base .mat-subheader{
+    color: var(--text-dull)!important;
+  }
+
+  .mat-list-base .mat-list-item{
+    color: var(--text-color)!important;
+  }
+
+  .mat-header-cell{
+    color: var(--text-dull);
+  }
+
+  mat-divider,
+  tbody th::after,
+  .mat-table *{
+    border-color: var(--border-color)!important;
+  }
+
+  .mat-header-row .mat-header-cell:not(.mat-header-row .mat-header-cell:first-child){
+    background-color: var(--bg-light);
+  }
+
+  .mat-menu-item .mat-icon-no-color, .mat-menu-item-submenu-trigger::after,
+  .mat-list-icon{
+    color: var(--text-color);
+    opacity: 0.6;
+  }
+
+  .mat-menu-panel,
+  .mat-bottom-sheet-container{
+    background: var(--bg-light);
+  }
+
+  .mat-menu-item{
+    color: var(--text-color);
+  }
+
+  .searchbar{
+    &--input{
+      background: var(--bg-light);
+      color: var(--text-color);
+    }
+
+    &--icon,
+    &--button{
+      color: var(--text-dull)!important;
+    }
+  }
+
+  .mat-expansion-panel{
+    transition: background-color 0.25s ease;
+
+    .mat-expansion-panel-header-description,
+    .mat-expansion-panel-header-title{
+      color: var(--text-color)!important;
+    }
+
+    .mat-expansion-panel-header-description{
+      opacity: 0.7;
+    }
+  }
+
+  .mat-expansion-panel:not(.mat-expanded){
+    background-color: transparent!important;
+  }
+
+  .mat-expansion-panel.mat-expanded{
+    background-color: var(--bg-light)!important;
+  }
+
+  .mat-expansion-panel-header{
+    background-color: transparent!important;
+  }
 }

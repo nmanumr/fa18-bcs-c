@@ -1,13 +1,13 @@
-<app-searchbar [style.transform]="'translateY('+search_pos+'px)'" [class.scrolled]="!isScrolling"></app-searchbar>
+<app-searchbar></app-searchbar>
 
-<ion-content [scrollEvents]="true" (ionScrollStart)="onScrollStart()" (ionScroll)="onScrolling($event)" (ionScrollEnd)="onScrollEnd()">
+<ion-content>
   <mat-nav-list>
     <ng-container *ngFor="let sm of semesters | async | reverse">
       <h3 mat-subheader>{{sm.name}}</h3>
 
       <ng-container *ngFor="let sub of sm.subjects | loadRefs | async">
         <mat-list-item *ngIf="sub.resources" (click)="openDetails(sub)">
-          <div mat-list-icon [style.backgroundColor]="sub.color">
+          <div mat-list-icon [style.backgroundColor]="sub.color" [style.opacity]="1">
             <mat-icon class="subject-icon">{{sub.icon || 'book'}}</mat-icon>
           </div>
           <h4 mat-line>{{sub.name}}</h4>
