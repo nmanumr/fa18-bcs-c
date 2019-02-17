@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Downloader, DownloadRequest, NotificationVisibility } from '@ionic-native/downloader/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileOpener } from '@ionic-native/file-opener/ngx';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Platform } from '@ionic/angular';
 import { MatBottomSheet } from '@angular/material';
 import { ResourceDetailSheetComponent } from 'src/app/components/resource-detail-sheet/resource-detail-sheet.component';
 import { DataService } from 'src/app/services/data.service';
@@ -18,7 +18,7 @@ export class SubjectDetailsComponent implements OnInit {
   @Input() subject;
   @Input() close;
 
-  
+
 
   constructor(
     private downloader: Downloader,
@@ -26,7 +26,8 @@ export class SubjectDetailsComponent implements OnInit {
     private fileOpener: FileOpener,
     private toastController: ToastController,
     private bottomSheet: MatBottomSheet,
-    public dataService: DataService 
+    public dataService: DataService,
+    private platform: Platform,
   ) { }
 
   ngOnInit() { }
@@ -38,20 +39,26 @@ export class SubjectDetailsComponent implements OnInit {
   }
 
   openFile(res) {
-    this.isAvailable(res).then(() => {
-      this.fileOpener.open(`${this.file.externalDataDirectory}Class Resources/${res.id}.${res.type}`,
-        this.dataService.getMimeType(res.type)
-      ).catch(err => alert("Error: " + err.message));
-    }).catch(() => {
-      this.downloadRes(res).then(data => {
+    if (this.platform.is("android")) {
+      this.isAvailable(res).then(() => {
         this.fileOpener.open(`${this.file.externalDataDirectory}Class Resources/${res.id}.${res.type}`,
           this.dataService.getMimeType(res.type)
         ).catch(err => alert("Error: " + err.message));
-      }).catch(err => alert("Error: " + err.message));
-    });
+      }).catch(() => {
+        this.downloadRes(res).then(data => {
+          this.fileOpener.open(`${this.file.externalDataDirectory}Class Resources/${res.id}.${res.type}`,
+            this.dataService.getMimeType(res.type)
+          ).catch(err => alert("Error: " + err.message));
+        }).catch(err => alert("Error: " + err.message));
+      });
+    }
+    else {
+      var win = window.open(res.view || res.download, '_blank');
+      win.focus();
+    }
   }
 
-  showInfo(res){
+  showInfo(res) {
     this.dataService.selectedResource = res;
     this.bottomSheet.open(ResourceDetailSheetComponent);
   }
@@ -72,7 +79,7 @@ export class SubjectDetailsComponent implements OnInit {
       message: 'Downloading...',
       duration: 2000
     }).then(
-      toast=>toast.present()
+      toast => toast.present()
     );
     return downloader;
   }
