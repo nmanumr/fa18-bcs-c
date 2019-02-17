@@ -10,6 +10,8 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   templateUrl: 'app.component.html'
 })
 export class AppComponent {
+  platforms;
+
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -20,22 +22,27 @@ export class AppComponent {
   }
 
   initializeApp() {
+    this.platforms = this.platform.platforms();
+    console.log(this.platforms);
     this.platform.ready().then(() => {
       this.nativeStorage.getItem('theme').then(
         theme => {
           if(theme == "dark"){
             var color = "#202124";
             this.statusBar.styleBlackOpaque();
+            document.children[0].setAttribute('theme', "dark");
           }
           else{
             var color = "#F5F5F5";
             this.statusBar.styleDefault();
+            document.children[0].setAttribute('theme', "light");
           }
           this.statusBar.backgroundColorByHexString(color);
           this.splashScreen.hide();
         },
         () => {
           this.nativeStorage.setItem('theme', "light");
+          document.children[0].setAttribute('theme', "light");
           this.statusBar.styleDefault();
           this.statusBar.backgroundColorByHexString("#F5F5F5");
           this.splashScreen.hide();

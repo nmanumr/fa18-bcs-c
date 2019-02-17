@@ -1,4 +1,4 @@
-<ion-header>
+<ion-header class="mobile-only">
   <ion-toolbar>
     <ion-title>
       <button mat-button [matMenuTriggerFor]="timetablesListMenu">
@@ -29,8 +29,41 @@
   </ion-toolbar>
 </ion-header>
 
+<app-searchbar class="desktop-only"></app-searchbar>
+<app-drawer class="desktop-only"></app-drawer>
+
 <ion-content>
-  <div class="table-container">
+  <ion-header class="desktop-only secondary">
+    <ion-toolbar>
+      <ion-title>
+        <button mat-button [matMenuTriggerFor]="timetablesListMenu">
+          {{name}}
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+        <mat-menu #timetablesListMenu="matMenu" overlapTrigger="true">
+          <ng-container *ngFor="let timetable of timetables">
+            <button mat-menu-item (click)="setCurrentTimetable(timetable.path)">
+              {{timetable.id}}
+            </button>
+          </ng-container>
+        </mat-menu>
+      </ion-title>
+      <ion-buttons slot="end" *ngIf="subjectColors">
+        <button mat-icon-button [matMenuTriggerFor]="colors">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #colors="matMenu" overlapTrigger="true">
+          <ng-container *ngFor="let sub of keys(subjectColors)">
+            <button mat-menu-item>
+              <mat-icon [style.color]="subjectColors[sub]" [style.opacity]="1">fiber_manual_record</mat-icon>
+              <span>{{sub}}</span>
+            </button>
+          </ng-container>
+        </mat-menu>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <div class="timetable-container table-container">
     <table class="mat-table">
       <thead>
         <tr class="mat-header-row">
@@ -41,7 +74,8 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let week of currentTimeTable | async | parseTimetable | async; index as i; first as firstr; last as lastr;" class="mat-row">
+        <tr *ngFor="let week of currentTimeTable | async | parseTimetable | async; index as i; first as firstr; last as lastr;"
+          class="mat-row">
           <th class="mat-header-cell">
             <span [attr.starttime]="breakpoints[i]" [attr.endtime]="breakpoints[i+1]">
               {{ i + 1 }}

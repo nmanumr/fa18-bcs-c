@@ -23,10 +23,10 @@ npm installl
 ionic serve
 
 # run ionic dev app (On real device with live reload)
-ionic cordova run andriod -l --device
+ionic cordova run android -l --device
 
 # run ionic dev app (On real device)
-ionic cordova run andriod --device
+ionic cordova run android --device
 
 # Build Apk
 make build-apk

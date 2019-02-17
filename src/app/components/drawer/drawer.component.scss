@@ -1,0 +1,52 @@
+.drawer {
+    width: 280px;
+    background: var(--bg-color);
+    transform: translateX(-280px);
+    height: calc(100vh - 69px);
+    margin-top: 69px;
+    position: absolute;
+    transition: transform .25s cubic-bezier(.4,0,.2,1);
+
+    ul {
+        list-style: none;
+        padding: 0px;
+
+        li {
+            padding: 4px 0 4px 24px;
+            border-top-right-radius: 25px;
+            border-bottom-right-radius: 25px;
+            line-height: 48px;
+            cursor: pointer;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 90%;
+
+            &:focus{
+                outline: none;
+            }
+
+            &:hover{
+                background-color: rgba(0,0,0,0.04);
+            }
+
+            &.active{
+                background-color: transparentize($color: #4285F4, $amount: .9);
+                color: var(--ion-color-primary);
+            }
+
+            ion-icon {
+                color: var(--text-dull);
+                width: 24px;
+                height: 24px;
+                position: relative;
+                top: 5px;
+            }
+
+            span {
+                padding-left: 32px;
+                line-height: 40px;
+                display: inline-block;
+            }
+        }
+    }
+}

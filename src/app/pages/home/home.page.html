@@ -1,20 +1,23 @@
 <app-searchbar></app-searchbar>
 
+<app-drawer></app-drawer>
 <ion-content>
-  <mat-nav-list>
-    <ng-container *ngFor="let sm of semesters | async | reverse">
-      <h3 mat-subheader>{{sm.name}}</h3>
+  <div class="max-md">
+    <mat-nav-list>
+      <ng-container *ngFor="let sm of semesters | async | reverse">
+        <h3 mat-subheader>{{sm.name}}</h3>
 
-      <ng-container *ngFor="let sub of sm.subjects | loadRefs | async">
-        <mat-list-item *ngIf="sub.resources" (click)="openDetails(sub)">
-          <div mat-list-icon [style.backgroundColor]="sub.color" [style.opacity]="1">
-            <mat-icon class="subject-icon">{{sub.icon || 'book'}}</mat-icon>
-          </div>
-          <h4 mat-line>{{sub.name}}</h4>
-          <p mat-line> {{sub.id}} - {{sub.teacher}} </p>
-        </mat-list-item>
+        <ng-container *ngFor="let sub of sm.subjects | loadRefs | async">
+          <mat-list-item *ngIf="sub.resources" (click)="openDetails(sub)">
+            <div mat-list-icon [style.backgroundColor]="sub.color" [style.opacity]="1">
+              <mat-icon class="subject-icon">{{sub.icon || 'book'}}</mat-icon>
+            </div>
+            <h4 mat-line>{{sub.name}}</h4>
+            <p mat-line> {{sub.id}} - {{sub.teacher}} </p>
+          </mat-list-item>
+        </ng-container>
+        <mat-divider></mat-divider>
       </ng-container>
-      <mat-divider></mat-divider>
-    </ng-container>
-  </mat-nav-list>
+    </mat-nav-list>
+  </div>
 </ion-content>

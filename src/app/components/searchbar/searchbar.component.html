@@ -1,21 +1,56 @@
-<div class="searchbar">
-  <ion-icon name="search" class="searchbar--icon"></ion-icon>
-  <input class="searchbar--input" placeholder="Search">
-  <button mat-icon-button class="searchbar--button" [matMenuTriggerFor]="menu">
-    <mat-icon>more_vert</mat-icon>
-  </button>
-  <mat-menu #menu="matMenu" overlapTrigger="true">
-    <button mat-menu-item (click)="toggleDark()">
-      <mat-icon>brightness_4</mat-icon>
-      <span>Toggle Dark Mode</span>
+<div class="header">
+
+  <div class="desktop-only">
+    <label mat-icon-button class="header--button" for="drawer">
+      <mat-icon>menu</mat-icon>
+    </label>
+  </div>
+
+  <div class="desktop-only">
+    <span class="title">Class Resources</span>
+  </div>
+
+  <div class="searchbar-container">
+    <div class="searchbar">
+      <ion-icon name="search" class="searchbar--icon"></ion-icon>
+      <input class="searchbar--input" placeholder="Search">
+      <button mat-icon-button class="searchbar--button" [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu" overlapTrigger="true">
+        <button mat-menu-item (click)="toggleDark()">
+          <mat-icon>brightness_4</mat-icon>
+          <span>Toggle Dark Mode</span>
+        </button>
+        <a mat-menu-item href="https://cuonline.cuilahore.edu.pk:8090/">
+          <mat-icon>person</mat-icon>
+          <span>Students Console</span>
+        </a>
+        <a mat-menu-item href="https://github.com/nmanumr/fa18-bcs-c">
+          <mat-icon>code</mat-icon>
+          <span>Source Code</span>
+        </a>
+      </mat-menu>
+    </div>
+  </div>
+
+  <div class="desktop-only">
+    <button mat-icon-button class="header--button" [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
     </button>
-    <a mat-menu-item href="https://cuonline.cuilahore.edu.pk:8090/">
-      <mat-icon>person</mat-icon>
-      <span>Students Console</span>
-    </a>
-    <a mat-menu-item href="https://github.com/nmanumr/fa18-bcs-c">
-      <mat-icon>code</mat-icon>
-      <span>Source Code</span>
-    </a>
-  </mat-menu>
+    <mat-menu #menu="matMenu" overlapTrigger="true">
+      <button mat-menu-item (click)="toggleDark()">
+        <mat-icon>brightness_4</mat-icon>
+        <span>Toggle Dark Mode</span>
+      </button>
+      <a mat-menu-item href="https://cuonline.cuilahore.edu.pk:8090/">
+        <mat-icon>person</mat-icon>
+        <span>Students Console</span>
+      </a>
+      <a mat-menu-item href="https://github.com/nmanumr/fa18-bcs-c">
+        <mat-icon>code</mat-icon>
+        <span>Source Code</span>
+      </a>
+    </mat-menu>
+  </div>
 </div>

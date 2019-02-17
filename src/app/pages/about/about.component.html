@@ -1,39 +1,45 @@
-<ion-header class="shadow">
+<ion-header class="shadow mobile-only">
   <ion-toolbar>
     <ion-title style="padding-left: 26px;">About</ion-title>
   </ion-toolbar>
 </ion-header>
 
+<app-searchbar class="desktop-only"></app-searchbar>
+<app-drawer class="desktop-only"></app-drawer>
+
 <ion-content padding>
-  <mat-nav-list>
-    <h3 mat-subheader>Class Resource (FA18-BCS-C)</h3>
-    <mat-list-item disableRipple>
-      <mat-icon mat-list-icon>history</mat-icon>
-      <h4 mat-line>Version</h4>
-      <p mat-line>0.2.0</p>
-    </mat-list-item>
-    <mat-list-item (click)="openLicense()">
-      <mat-icon mat-list-icon>account_balance</mat-icon>
-      <h4 mat-line>License</h4>
-      <p mat-line>GNU GPL v3.0</p>
-    </mat-list-item>
-    <mat-list-item disableRipple>
-      <mat-icon mat-list-icon>copyright</mat-icon>
-      <h4 mat-line>Copyright</h4>
-      <p mat-line>2018 - 2022 Nauman Umer</p>
-    </mat-list-item>
-    <a mat-list-item href="https://github.com/nmanumr/fa18-bcs-c">
-      <mat-icon mat-list-icon>code</mat-icon>
-      <h4 mat-line>Source Code</h4>
-    </a>
-    <a mat-list-item href="https://github.com/nmanumr/fa18-bcs-c/issues">
-      <mat-icon mat-list-icon>bug_report</mat-icon>
-      <h4 mat-line>Report Issue</h4>
-    </a>
-    <h3 mat-subheader>About</h3>
-    <p class="lead">
-      This app is built to provide a plateform to share class learning resources for
-      session FA18-BCS-C COMSATS, Lahore
-    </p>
-  </mat-nav-list>
+  <div class="max-md">
+
+    <mat-nav-list>
+      <h3 mat-subheader>Class Resource (FA18-BCS-C)</h3>
+      <mat-list-item disableRipple>
+        <mat-icon mat-list-icon>history</mat-icon>
+        <h4 mat-line>Version</h4>
+        <p mat-line>0.2.0</p>
+      </mat-list-item>
+      <mat-list-item (click)="openLicense()">
+        <mat-icon mat-list-icon>account_balance</mat-icon>
+        <h4 mat-line>License</h4>
+        <p mat-line>GNU GPL v3.0</p>
+      </mat-list-item>
+      <mat-list-item disableRipple>
+        <mat-icon mat-list-icon>copyright</mat-icon>
+        <h4 mat-line>Copyright</h4>
+        <p mat-line>2018 - 2022 Nauman Umer</p>
+      </mat-list-item>
+      <a mat-list-item href="https://github.com/nmanumr/fa18-bcs-c">
+        <mat-icon mat-list-icon>code</mat-icon>
+        <h4 mat-line>Source Code</h4>
+      </a>
+      <a mat-list-item href="https://github.com/nmanumr/fa18-bcs-c/issues">
+        <mat-icon mat-list-icon>bug_report</mat-icon>
+        <h4 mat-line>Report Issue</h4>
+      </a>
+      <h3 mat-subheader>About</h3>
+      <p class="lead">
+        This app is built to provide a platform to share class learning resources for
+        session FA18-BCS-C COMSATS, Lahore
+      </p>
+    </mat-nav-list>
+  </div>
 </ion-content>

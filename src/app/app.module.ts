@@ -48,6 +48,9 @@ import { FileOpener } from '@ionic-native/file-opener/ngx';
 import { ResourceDetailSheetComponent } from './components/resource-detail-sheet/resource-detail-sheet.component';
 import { LicenseComponent } from './pages/license/license.component';
 import { NativeStorage } from '@ionic-native/native-storage/ngx';
+import { Firebase } from '@ionic-native/firebase/ngx';
+import { DrawerComponent } from './components/drawer/drawer.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 
 @NgModule({
@@ -66,7 +69,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     LibraryComponent,
     LoadRefsPipe,
     ResourceDetailSheetComponent,
-    LicenseComponent
+    LicenseComponent,
+    DrawerComponent
   ],
   entryComponents: [
     LectureModelComponent,
@@ -93,6 +97,7 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     MatTableModule,
     BrowserAnimationsModule,
     MatBottomSheetModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
   ],
   providers: [
     StatusBar,
@@ -103,7 +108,8 @@ import { NativeStorage } from '@ionic-native/native-storage/ngx';
     Downloader,
     File,
     FileOpener,
-    NativeStorage
+    NativeStorage,
+    Firebase
   ],
   bootstrap: [AppComponent]
 })

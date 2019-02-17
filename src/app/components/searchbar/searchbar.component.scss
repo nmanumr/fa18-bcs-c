@@ -1,5 +1,6 @@
 :host{
     z-index: 1;
+    user-select: none;
 }
 
 :host.scrolled{
@@ -50,4 +51,24 @@
         color: rgb(102, 102, 102);
         top: -3px;
     }
+}
+
+[for="drawer"]{
+    display: block;
+    padding: 6px;
+    line-height: 19px;
+    cursor: pointer;
+    
+    mat-icon {
+        position: relative;
+        bottom: -3px;
+    }
+}
+
+.title{
+    color: var(--text-color);
+}
+
+.header--button{
+    color: var(--text-dull);
 }
