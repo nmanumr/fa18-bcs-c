@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
@@ -10,7 +10,7 @@ import { SwUpdate } from '@angular/service-worker';
   selector: 'app-root',
   templateUrl: 'app.component.html'
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   platforms;
   updateAvailable = false;
 
@@ -41,20 +41,20 @@ export class AppComponent {
     alert.present();
   }
 
-  initializeApp() {
+  ngOnInit(){
+    // check for service worker updates
+    this.swUpdate.available.subscribe(event => {
+      this.showUpdate();
+    });
+    this.swUpdate.checkForUpdate();
+  }
 
+  initializeApp() {
     // get current plateform
     this.platforms = this.platform.platforms();
 
     // when plateform is ready
     this.platform.ready().then(() => {
-      this.showUpdate();
-
-      // check for service worker updates
-      this.swUpdate.available.subscribe(event => {
-        this.showUpdate();
-      });
-      this.swUpdate.checkForUpdate();
 
       // set last user theme
       this.nativeStorage.getItem('theme').then(

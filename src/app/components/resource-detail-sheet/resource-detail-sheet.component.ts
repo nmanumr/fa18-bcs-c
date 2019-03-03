@@ -12,8 +12,7 @@ export class ResourceDetailSheetComponent implements OnInit {
   res;
 
   constructor(
-    private bottomSheetRef: MatBottomSheetRef<ResourceDetailSheetComponent>,
-    private dataService: DataService
+    public dataService: DataService
   ) { }
 
   ngOnInit() {

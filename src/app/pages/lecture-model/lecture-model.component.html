@@ -37,5 +37,20 @@
       <h4 mat-line>Slot</h4>
       <p mat-line>{{lecture.slot}}</p>
     </mat-list-item>
+    <mat-list-item *ngIf="lecture.address">
+      <mat-icon mat-list-icon>person_pin_circle</mat-icon>
+      <h4 mat-line>Address</h4>
+      <p mat-line>{{lecture.address}}</p>
+    </mat-list-item>
+    <mat-list-item *ngIf="lecture.email">
+      <mat-icon mat-list-icon>email</mat-icon>
+      <h4 mat-line>Email Address</h4>
+      <p mat-line>{{lecture.email}}</p>
+    </mat-list-item>
+    <mat-list-item *ngIf="lecture.phone">
+      <mat-icon mat-list-icon>phone</mat-icon>
+      <h4 mat-line>Phone Number</h4>
+      <p mat-line>{{lecture.phone}}</p>
+    </mat-list-item>
   </mat-nav-list>
 </ion-content>

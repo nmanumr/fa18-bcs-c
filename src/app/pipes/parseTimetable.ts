@@ -29,8 +29,8 @@ export class ParseTimetablePipe implements PipeTransform {
           sub.unsubscribe();
           return r({
             code: period[0],
+            ...data,
             subject: data["name"],
-            teacher: data["teacher"],
             room: period[1],
             rowspan: period[3] || 1,
             color: period[2] ? data["colorL"] : data["color"],

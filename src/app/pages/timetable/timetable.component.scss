@@ -9,6 +9,10 @@ ion-toolbar{
     --min-height: 0;
 }
 
+ion-content{
+    --padding-top: 0px;
+}
+
 table{
     border-color: #e5e5e5;
     background: transparent;
